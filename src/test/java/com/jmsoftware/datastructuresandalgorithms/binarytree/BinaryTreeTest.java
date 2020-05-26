@@ -4,6 +4,8 @@ import com.jmsoftware.datastructuresandalgorithms.binarytree.entity.BinaryTreeNo
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.junit.jupiter.api.Test;
+import org.openjdk.jol.info.ClassLayout;
+import org.openjdk.jol.info.GraphLayout;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.LinkedList;
@@ -56,5 +58,11 @@ public class BinaryTreeTest {
 
         val treeDiagramByTraversingInPreOrder = node1.getTreeDiagramByTraversingInPreorder();
         log.info("Binary tree diagram: {}{}", System.lineSeparator(), treeDiagramByTraversingInPreOrder);
+
+        val classLayout = ClassLayout.parseInstance(node1);
+        val graphLayout = GraphLayout.parseInstance(node1);
+        log.warn("{}", classLayout.toPrintable());
+        log.warn("{}", graphLayout.toPrintable());
+        log.warn("{}", graphLayout.toFootprint());
     }
 }
