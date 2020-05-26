@@ -1,0 +1,51 @@
+server:
+  port: @port@
+  tomcat:
+    uri-encoding: @project.build.sourceEncoding@
+
+spring:
+  application:
+    name: @project.artifactId@
+  mvc:
+    throw-exception-if-no-handler-found: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Hong_Kong
+  servlet:
+    multipart:
+      # `location` specifies the directory where uploaded files will be stored. When not specified,
+      # a temporary directory will be used. ATTENTION: it may differ due to OS.
+      location: /Users/johnny/Documents/@project.artifactId@/temprary-file
+      # `max-file-size` specifies the maximum size permitted for uploaded files. The default is 1MB. We set it as 64 MB.
+      max-file-size: 64MB
+      # `max-request-size` specifies the maximum size allowed for multipart/form-data requests. The default is 10MB.
+      max-request-size: 70MB
+      # `file-size-threshold` specifies the size threshold after which files will be written to disk.
+      # The default is 0. We set it as 0 too.
+      file-size-threshold: 0
+
+logging:
+  config: classpath:configuration/logback/logback.xml
+  # Configure logging level of project as DEBUG to enable SQL logging and other logging.
+  level:
+    com.jmsoftware: DEBUG
+
+project:
+  property:
+    base-package: com.jmsoftware.datastructuresandalgorithms
+    context-path:
+    group-id: @project.groupId@
+    project-parent-artifact-id: @project.parent.artifactId@
+    project-artifact-id: @project.artifactId@
+    version: @project.version@
+    description: @project.description@
+    jdk-version: @java.version@
+    url: @project.url@
+    inception-year: @inceptionYear@
+    organization-name: @project.organization.name@
+    organization-url: @project.organization.url@
+    issue-management-system: @project.issueManagement.system@
+    issue-management-url: @project.issueManagement.url@
+    developer-name: @developerName@
+    developer-email: @developerEmail@
+    developer-url: @developerUrl@

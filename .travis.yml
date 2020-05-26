@@ -1,0 +1,29 @@
+# Travis CI Java documentation can be found in:
+# https://docs.travis-ci.com/user/languages/java/
+language: java
+
+# We can specify a list of JDKs to be used for testing. A list of available JDKs in Trusty can be seed in:
+# https://docs.travis-ci.com/user/reference/trusty/#jvm-clojure-groovy-java-scala-images
+jdk: oraclejdk11
+
+# Skipping the Installation Phase
+# https://docs.travis-ci.com/user/job-lifecycle/#skipping-the-installation-phase
+install: skip
+
+# Each job in Travis CI has several steps:
+# https://docs.travis-ci.com/user/job-lifecycle/
+# The 'language: java' directive sets up sane defaults to test common java applications.
+# We customize the script for compiling Maven application. For more about customizing the build:
+# https://docs.travis-ci.com/user/customizing-the-build
+script:
+  - echo "Starting to build. DOCKER_HUB_USERNAME:"
+  - mvn package -Dmaven.javadoc.skip=true -B -V
+
+# https://docs.travis-ci.com/user/encryption-keys#usage
+# travis encrypt --pro KEY=value
+
+# https://docs.travis-ci.com/user/notifications#default-notification-settings
+notifications:
+  email:
+    on_success: change
+    on_failure: always

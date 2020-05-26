@@ -1,0 +1,62 @@
+version: "3.7"
+
+################################################################################
+#                        ATTENTIONS of Docker Compose                          #
+################################################################################
+# 1. Pattern of 'container_name' must be:                                      #
+#    [service-name]-[system-short-name]-[environment-alias]                    #
+#    For instance, there is a 'MySQL service' for 'Muscle and Fitness Server', #
+#    the 'container_name' must be: mysql-maf-dev_dkr.                          #
+#    In Kubernetes, 'container_name' must not be set.                          #
+# 2. ${TAG} is defined in file '.env'.                                         #
+# 3. The differences between each environment docker-compose.yml:              #
+#    a. Environmental suffix. There are 4 types of environmental suffix:       #
+#       * '-dev_dkr'                                                           #
+#       * '-test'                                                              #
+#       * '-stage'                                                             #
+#       * '-prod'                                                              #
+#    b. 'subnet' and 'ipv4_address'.                                           #
+# 4. IP range definition (for instance of 'development-docker'):               #
+#    a. 172.16.1.10 ~ 172.16.1.19:  middleware of Muscle and Fitness           #
+#    b. 172.16.1.19 ~ 172.16.1.253: microservice of Muscle and Fitness         #
+#    c. 172.16.1.254:               gateway for Muscle and Fitness             #
+#       CAUTION: 172.16.1.255 is not available for container.                  #
+# 5. Conceal some service ports:                                               #
+#    a. api-portal                                                             #
+#    b. auth-center                                                            #
+#    c. exercise-mis                                                           #
+#    d. muscle-mis                                                             #
+# 6. Define timezone for environment variable: Asia/Hong_Kong                  #
+# 7. Define 'depends_on' for service                                           #
+################################################################################
+
+services:
+  ################################################################################
+  #                       Data Structure and Algorithms                          #
+  ################################################################################
+  data-structure-and-algorithms:
+    container_name: data-structure-and-algorithms
+    image: "ijohnnymiller/data-structure-and-algorithms:${TAG}"
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - /Users/johnny/docker-file-mapping/data-structure-and-algorithms-logs:/logs
+    environment:
+      TZ: Asia/Hong_Kong
+    networks:
+      data_structure_and_algorithms_network:
+        # Gateway uses the last IP of the subnet
+        ipv4_address: 172.16.5.254
+
+################################################################################
+#                       Network for Muscle and Fitness                         #
+################################################################################
+networks:
+  data_structure_and_algorithms_network:
+    ipam:
+      driver: default
+      config:
+        # Private Network (20-bit block): https://en.wikipedia.org/wiki/Private_network
+        # IP range of the private network: https://ipgeolocation.io/browse/ipv4/172.16.5.0/24
+        - subnet: "172.16.5.0/24"
