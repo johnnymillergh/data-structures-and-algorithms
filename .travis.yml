@@ -17,10 +17,15 @@ install: skip
 # https://docs.travis-ci.com/user/customizing-the-build
 script:
   - echo "Starting to build. DOCKER_HUB_USERNAME:"
-  - mvn package -Dmaven.javadoc.skip=true -B -V
+  - echo $DOCKER_HUB_USERNAME
+  - mvn verify -Dmaven.javadoc.skip=true -Djib.to.auth.username=$DOCKER_HUB_USERNAME -Djib.to.auth.password=$DOCKER_HUB_PASSWORD -P development-docker -B -V
 
 # https://docs.travis-ci.com/user/encryption-keys#usage
 # travis encrypt --pro KEY=value
+env:
+  global:
+    - secure: "ZBXBDnOIMaGaVVBWHK4OnDV2I1hM4cVrdOorhXxcLTt4XLaw2V5cx2DkSzXfU4PgEbhcNCQeujBy3HI7CxMYZDuQPLzi4bX0xLtWQsQlTcK+65j29PtgDP+ffffnzNhKS7hm81QjGMNa4lHm3LoGVTER9ulmjGnu0klzyqcXMEFau7kvIQG7tbcvVJNmD00DIFfiIx5aH6rnGgxCuN1+rsiuj+dhT9oZf3CAq+nwpL4798WBlPIGxgk3f8fiebn6ONQbh3JkSWmZkGvVGoRuYaRDxOOZHBn1SzR+ecoOJRcmn0yNA67C2CEFKHsNW5Us2dENBbWfESQbjO4FPgsWqjDxjFEKs7Z8hm38j1vQ0sm30aP0cuFOmyvPJIK8V4g7tfRgGF+/i85TD0DWOiG8Q3+pFub81SNbW0pT15z3e5AT/+RLFc/uvR+1UIXd+1h2aXPdTYYTYIfIGA4e4ksvO+qHGHAOjMtAMRguHUq0zKD6GSOaRxHbfXgxYxdo9YFSJBYYUqSIVxfiZZ3mNGGnjtJYhM683vC769r6lSbTYSx053aP1qE1kaffVYgNJIN4Pv7LqWHwX8gfdXivLAjlhxiDKf9gn5ligwAJf8wwMsYfu2uKUmjhi9BJWyTd9lUL7/jfDGQR66Xss5LOfrw1A5NfaIn/v9x8r6cyhO/iV6M="
+    - secure: "ptSOp6UEA78wjFKuChUygSy5Tn4aW5zpRWBwHs8ND0MXmf6a9sIHSwIgYLUxRpe8lTeid/IHbOMcZnMb6JzDctFpoeYOmDxUQdDAdvkexQsrS+N0zwQMKRKYhcAsk0Vw0QEJFVQeO4DLIN7M1uVxP6DDRDMtH3Gfhn7GEUPlrTVzquXUEpOZnNQbG5B/aWiBJOUTzTkc2UeTtsmIb6ysc80n0hV5Jgr3pEzydno6/0Ong07Csj/mdyDaVsu2A3RaSuqOHCh9OVSR/7Y2LlPIeR2G0f+uNULigRsHQe3ONjS8P6uBGbO90hsmO6wfxEVw2ZWoE+gtga2HJ9tZQURpcxQW94pGF7FRfyzWWi4hMF5Pg7yBiJuLunEnSOg+lGHlkLhILA/SgMuCcAFuSWvZIYsStt7MnxkhE1sKmzVl8xNxVkzjR9KIhq2WyFydW3i2uO0fu9qPUTgkjn6MLM38fl91rTxtdAMhXULWhIKsVZDuEAcScf92tg+LoAKVqAbKf3KB6L3DBdnkzKHUjRr4VGh16Pnrbal6byHE0N4jkl/lY1a+dldMAj6QaqCW2ez6F8dnzCrQuZB7FqUeBBhc44yckaRRTNKJRgCKyIsA5lH7saET67CAQ4pI8CyzCog6qu2oqKbqP0dPt414SYAO7m+GWwlkL2pA9DpjYNNutZw="
 
 # https://docs.travis-ci.com/user/notifications#default-notification-settings
 notifications:
