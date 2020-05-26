@@ -3,21 +3,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ExRx.net Crawler Server</title>
-    <link rel="icon" type="image/png" sizes="96x96" href="icon/favicon-96x96.png">
-    <link rel="stylesheet" href="styles/index.css">
+    <title>UNSET</title>
+    <link rel="icon" href="icon/favicon.ico">
+    <link rel="stylesheet" href="styles/home.css">
 </head>
 <body>
 <div id="app">
     <div class="slide-in-bck-center greeting-box">
+        <span class="greeting-title">Hello, World!</span>
         <strong class="greeting-text">
-            <span class="greeting-title">Hello, World!</span>
-            Welcome to <span class="server-name">ExRx.net Crawler Server</span>!
+            Welcome to <span class="server-name">{{ projectArtifactId }}@{{ version }}</span>!
         </strong>
         <button class="go-to" @click="handleClickSwaggerApiDocumentation">Go to Swagger API Documentation</button>
         <button class="go-to" @click="handleClickVideoDemo">Go to Video Demo</button>
-        <img class="social-image" src="image/exrx-net-crawler-server-social-image.png"
-             alt="Exrx Net Crawler Server Social Image">
+        <span class="application-name">{{ applicationName }}</span>
+        <img class="social-image" src="image/data-structures-and-algorithms-social-image.png"
+             alt="Muscle And Fitness Server Social Image">
     </div>
     <fieldset>
         <legend>Create New Person</legend>
@@ -73,5 +74,5 @@
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="script/index.js"></script>
+<script src="script/home.js"></script>
 </html>

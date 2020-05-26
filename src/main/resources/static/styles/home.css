@@ -183,6 +183,19 @@ button:hover {
     font-size: xx-large;
     text-align: center;
     color: ivory;
+    display: block;
+}
+
+.application-name {
+    display: inline-block;
+    font-weight: bold;
+    width: auto;
+    font-size: 48px;
+    color: rgb(7, 156, 58);
+    position: relative;
+    left: 60px;
+    top: 200px;
+    cursor: default;
 }
 
 .social-image {
@@ -194,6 +207,8 @@ button:hover {
     text-align: center;
     display: block;
     font-size: 48px;
+    font-weight: bold;
+    color: ivory;
     text-shadow: black 2px 2px 6px;
 }
 

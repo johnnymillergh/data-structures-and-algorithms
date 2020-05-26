@@ -36,7 +36,7 @@ public class RedirectController {
     @ApiOperation(value = "/home", notes = "Home page")
     public void handleHomeRequest(HttpServletResponse response) throws IOException {
         // Redirect to home page
-        response.sendRedirect(projectProperty.getContextPath() + "/");
+        response.sendRedirect(projectProperty.getContextPath() + "static/home.html");
     }
 
     @GetMapping("/doc")
@@ -50,6 +50,6 @@ public class RedirectController {
     @ApiOperation(value = "/webjars/bycdao-ui/images/api.ico", notes = "Favicon redirection")
     public void handleFaviconRequest(HttpServletResponse response) throws IOException {
         // Redirect to a customized favicon
-        response.sendRedirect(projectProperty.getContextPath() + "/static/icon/favicon-96x96.png");
+        response.sendRedirect(projectProperty.getContextPath() + "/static/icon/favicon.ico");
     }
 }

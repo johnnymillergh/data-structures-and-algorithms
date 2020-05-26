@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ExRx.net Crawler Server</title>
-    <link rel="icon" type="image/png" sizes="96x96" href="icon/favicon-96x96.png">
+    <link rel="icon" href="icon/favicon.ico">
     <link rel="stylesheet" href="styles/video.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div class="slide-in-bck-center greeting-box">
         <strong class="greeting-text">
             <span class="greeting-title">Hello, World!</span>
-            Welcome to <span class="server-name">ExRx.net Crawler Server</span>!
+            Welcome to <span class="server-name">{{ appInfo.projectArtifactId }}@{{ appInfo.version }}</span>!
         </strong>
         <video width="600px" controls style="display: block;">
             <source :src="videoSource" type="video/mp4">
