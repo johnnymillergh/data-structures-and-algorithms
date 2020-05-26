@@ -46,6 +46,13 @@ public class HuffmanTree {
         recursivePrintHuffmanCode((HuffmanNode) rootNode.getRightChildNode(), string + "1");
     }
 
+    /**
+     * Recursive traverse in pre order huffman tree.
+     *
+     * @param rootNode       the root node
+     * @param string         the string
+     * @param huffmanCodeMap the huffman code map
+     */
     public static void recursiveTraverseInPreOrderHuffmanTree(HuffmanNode rootNode, String string,
                                                               HashMap<Character, String> huffmanCodeMap) {
         if (rootNode == null) {
@@ -60,6 +67,12 @@ public class HuffmanTree {
                                                huffmanCodeMap);
     }
 
+    /**
+     * Generate huffman tree huffman node.
+     *
+     * @param frequencyMap the frequency map
+     * @return the huffman node
+     */
     public static HuffmanNode generateHuffmanTree(Map<Character, Integer> frequencyMap) {
         // Create a priority queue q. Make a min-priority queue(min-heap).
         val size = frequencyMap.size();
@@ -97,6 +110,12 @@ public class HuffmanTree {
         return huffmanNodePriorityQueue.poll();
     }
 
+    /**
+     * Calculate frequency map.
+     *
+     * @param inputString the input string
+     * @return the map
+     */
     public static Map<Character, Integer> calculateFrequency(String inputString) {
         val frequencyMap = new HashMap<Character, Integer>(32);
         for (var index = 0; index < inputString.length(); index++) {
