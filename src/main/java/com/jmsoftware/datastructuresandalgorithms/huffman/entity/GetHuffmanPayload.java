@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 
 /**
- * <h1>GetHuffmanTreeDiagramPayload</h1>
+ * <h1>GetHuffmanPayload</h1>
  * <p>
  * Change description here.
  *
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotEmpty;
  * @date 5/26/20 9:48 AM
  **/
 @Data
-public class GetHuffmanTreeDiagramPayload {
+public class GetHuffmanPayload {
     @NotEmpty
     private String content;
 }

@@ -1,8 +1,8 @@
 package com.jmsoftware.datastructuresandalgorithms.huffman.controller;
 
 import com.jmsoftware.datastructuresandalgorithms.common.bean.ResponseBodyBean;
-import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanTreeDiagramPayload;
-import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanTreeDiagramResponse;
+import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanPayload;
+import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanResponse;
 import com.jmsoftware.datastructuresandalgorithms.huffman.service.HuffmanService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,10 +28,9 @@ import javax.validation.Valid;
 public class HuffmanController {
     private final HuffmanService huffmanService;
 
-    @GetMapping("/get-huffman-tree-diagram")
-    @ApiOperation(value = "/get-huffman-tree-diagram", notes = "Get huffman tree diagram")
-    public ResponseBodyBean<GetHuffmanTreeDiagramResponse> getHuffmanTreeDiagram(
-            @Valid GetHuffmanTreeDiagramPayload payload) {
-        return ResponseBodyBean.ofSuccess(huffmanService.getHuffmanTreeDiagram(payload));
+    @GetMapping("/get-huffman")
+    @ApiOperation(value = "/get-huffman", notes = "Get huffman")
+    public ResponseBodyBean<GetHuffmanResponse> getHuffmanPayload(@Valid GetHuffmanPayload payload) {
+        return ResponseBodyBean.ofSuccess(huffmanService.getHuffman(payload));
     }
 }

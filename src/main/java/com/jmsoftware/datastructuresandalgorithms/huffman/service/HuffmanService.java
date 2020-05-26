@@ -1,7 +1,7 @@
 package com.jmsoftware.datastructuresandalgorithms.huffman.service;
 
-import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanTreeDiagramPayload;
-import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanTreeDiagramResponse;
+import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanPayload;
+import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanResponse;
 
 /**
  * <h1>HuffmanService</h1>
@@ -18,5 +18,5 @@ public interface HuffmanService {
      * @param payload the payload
      * @return the huffman tree diagram
      */
-    GetHuffmanTreeDiagramResponse getHuffmanTreeDiagram(GetHuffmanTreeDiagramPayload payload);
+    GetHuffmanResponse getHuffman(GetHuffmanPayload payload);
 }

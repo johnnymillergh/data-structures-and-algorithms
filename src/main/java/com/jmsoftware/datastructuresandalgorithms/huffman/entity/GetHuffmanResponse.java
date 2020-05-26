@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * <h1>GetHuffmanTreeDiagramResponse</h1>
+ * <h1>GetHuffmanResponse</h1>
  * <p>
  * Change description here.
  *
@@ -13,7 +13,8 @@ import java.util.Map;
  * @date 5/26/20 9:49 AM
  **/
 @Data
-public class GetHuffmanTreeDiagramResponse {
-    private String diagram;
+public class GetHuffmanResponse {
+    private String encodedContent;
     private Map<Character, String> huffmanCodeMap;
+    private String huffmanTreeAsciiDiagram;
 }

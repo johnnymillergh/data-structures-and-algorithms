@@ -2,7 +2,7 @@ package com.jmsoftware.datastructuresandalgorithms.huffman;
 
 import com.jmsoftware.datastructuresandalgorithms.common.constant.HttpStatus;
 import com.jmsoftware.datastructuresandalgorithms.huffman.controller.HuffmanController;
-import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanTreeDiagramPayload;
+import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanPayload;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.junit.jupiter.api.Assertions;
@@ -26,10 +26,10 @@ public class HuffmanTreeTest {
 
     @Test
     public void getHuffmanTreeDiagramTest() {
-        val payload = new GetHuffmanTreeDiagramPayload();
-        payload.setContent("GetHuffmanTreeDiagramPayload");
-        val response = huffmanController.getHuffmanTreeDiagram(payload);
-        log.info("Succeed to get Huffman tree diagram: {}{}", System.lineSeparator(), response.getData().getDiagram());
+        val payload = new GetHuffmanPayload();
+        payload.setContent("GetHuffmanPayload");
+        val response = huffmanController.getHuffmanPayload(payload);
+        log.info("Succeed to get Huffman tree diagram: {}{}", System.lineSeparator(), response.getData().getHuffmanTreeAsciiDiagram());
         Assertions.assertEquals(HttpStatus.OK.getCode(), response.getStatus());
     }
 }

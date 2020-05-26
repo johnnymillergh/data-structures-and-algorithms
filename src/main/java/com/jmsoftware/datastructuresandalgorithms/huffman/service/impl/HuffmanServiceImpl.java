@@ -1,14 +1,18 @@
 package com.jmsoftware.datastructuresandalgorithms.huffman.service.impl;
 
-import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanTreeDiagramPayload;
-import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanTreeDiagramResponse;
+import com.jmsoftware.datastructuresandalgorithms.common.aspect.ValidateArgument;
+import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanPayload;
+import com.jmsoftware.datastructuresandalgorithms.huffman.entity.GetHuffmanResponse;
 import com.jmsoftware.datastructuresandalgorithms.huffman.entity.HuffmanTree;
 import com.jmsoftware.datastructuresandalgorithms.huffman.service.HuffmanService;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <h1>HuffmanServiceImpl</h1>
@@ -22,8 +26,9 @@ import java.util.HashMap;
 @Service
 public class HuffmanServiceImpl implements HuffmanService {
     @Override
-    public GetHuffmanTreeDiagramResponse getHuffmanTreeDiagram(GetHuffmanTreeDiagramPayload payload) {
-        val response = new GetHuffmanTreeDiagramResponse();
+    @ValidateArgument
+    public GetHuffmanResponse getHuffman(@Valid GetHuffmanPayload payload) {
+        val response = new GetHuffmanResponse();
         val frequencyMap = HuffmanTree.calculateFrequency(payload.getContent());
         log.info("Frequency map: {}", frequencyMap);
         val rootNode = HuffmanTree.generateHuffmanTree(frequencyMap);
@@ -31,10 +36,28 @@ public class HuffmanServiceImpl implements HuffmanService {
         val huffmanCodeMap = new HashMap<Character, String>(32);
         HuffmanTree.recursiveTraverseInPreOrderHuffmanTree(rootNode, "", huffmanCodeMap);
         log.info("Huffman code map: {}", huffmanCodeMap);
+        response.setHuffmanCodeMap(huffmanCodeMap);
+        response.setEncodedContent(this.encodeTextByHuffmanCode(huffmanCodeMap, payload.getContent()));
         val treeDiagramByTraversingInPreOrder = rootNode.getTreeDiagramByTraversingInPreOrder();
         log.info("Huffman tree diagram: {}{}", System.lineSeparator(), treeDiagramByTraversingInPreOrder);
-        response.setDiagram(treeDiagramByTraversingInPreOrder);
-        response.setHuffmanCodeMap(huffmanCodeMap);
+        response.setHuffmanTreeAsciiDiagram(treeDiagramByTraversingInPreOrder);
         return response;
+    }
+
+    /**
+     * Encode text by huffman code string.
+     *
+     * @param huffmanCodeMap the huffman code map
+     * @param content        the content
+     * @return the string
+     */
+    private String encodeTextByHuffmanCode(@NonNull Map<Character, String> huffmanCodeMap, @NonNull String content) {
+        StringBuilder encodedText = new StringBuilder();
+        for (var index = 0; index < content.length(); index++) {
+            val character = content.charAt(index);
+            val huffmanCodeOfCharacter = huffmanCodeMap.get(character);
+            encodedText.append(huffmanCodeOfCharacter);
+        }
+        return encodedText.toString();
     }
 }
