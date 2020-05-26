@@ -141,7 +141,7 @@ public class HuffmanTree {
         recursiveTraverseInPreOrderHuffmanTree(rootNode, "", huffmanCodeMap);
         System.out.println("Huffman code map: " + huffmanCodeMap);
         System.out.println("Root: " + rootNode);
-        val treeDiagramByTraversingInPreOrder = rootNode.getTreeDiagramByTraversingInPreOrder();
+        val treeDiagramByTraversingInPreOrder = rootNode.getTreeDiagramByTraversingInPreorder();
         System.out.println(treeDiagramByTraversingInPreOrder);
     }
 }

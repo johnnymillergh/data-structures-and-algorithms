@@ -34,11 +34,11 @@ public abstract class BaseBinaryTreeNode<NodeType> {
     public abstract String outputNodeInformationFormat();
 
     /**
-     * Gets tree diagram by traversing in pre order.
+     * Gets tree diagram by traversing in preorder.
      *
      * @return the tree diagram by traversing in pre order
      */
-    public final String getTreeDiagramByTraversingInPreOrder() {
+    public final String getTreeDiagramByTraversingInPreorder() {
         val content = new StringBuilder();
         content.append(this.outputNodeInformationFormat());
         val pointerRight = "└──";

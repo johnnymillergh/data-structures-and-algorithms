@@ -38,7 +38,7 @@ public class HuffmanServiceImpl implements HuffmanService {
         log.info("Huffman code map: {}", huffmanCodeMap);
         response.setHuffmanCodeMap(huffmanCodeMap);
         response.setEncodedContent(this.encodeTextByHuffmanCode(huffmanCodeMap, payload.getContent()));
-        val treeDiagramByTraversingInPreOrder = rootNode.getTreeDiagramByTraversingInPreOrder();
+        val treeDiagramByTraversingInPreOrder = rootNode.getTreeDiagramByTraversingInPreorder();
         log.info("Huffman tree diagram: {}{}", System.lineSeparator(), treeDiagramByTraversingInPreOrder);
         response.setHuffmanTreeAsciiDiagram(treeDiagramByTraversingInPreOrder);
         return response;

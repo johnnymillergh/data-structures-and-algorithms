@@ -44,14 +44,17 @@ public class BinaryTreeTest {
 
         val traversalByPreorder = new LinkedList<String>();
         BinaryTreeNode.recursivelyTraverseByPreorder(node1, traversalByPreorder);
-        log.info("Traversal by preorder: {}", traversalByPreorder);
+        log.info("Traverse binary tree by preorder: {}", traversalByPreorder);
 
         val traversalByInorder = new LinkedList<String>();
         BinaryTreeNode.recursivelyTraverseByInorder(node1, traversalByInorder);
-        log.info("Traversal by inorder: {}", traversalByInorder);
+        log.info("Traverse binary tree by inorder: {}", traversalByInorder);
 
         val traversalByPostorder = new LinkedList<String>();
         BinaryTreeNode.recursivelyTraverseByPostorder(node1, traversalByPostorder);
-        log.info("Traversal by postorder: {}", traversalByPostorder);
+        log.info("Traverse binary tree by postorder: {}", traversalByPostorder);
+
+        val treeDiagramByTraversingInPreOrder = node1.getTreeDiagramByTraversingInPreorder();
+        log.info("Binary tree diagram: {}{}", System.lineSeparator(), treeDiagramByTraversingInPreOrder);
     }
 }
