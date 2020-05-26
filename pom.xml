@@ -110,6 +110,7 @@
                         <jvmFlags>
                             <jvmFlag>-Xmx256m</jvmFlag>
                         </jvmFlags>
+                        <mainClass>com.jmsoftware.datastructuresandalgorithms.DataStructuresAndAlgorithmsApplication</mainClass>
                         <ports>
                             <port>${port}</port>
                         </ports>
