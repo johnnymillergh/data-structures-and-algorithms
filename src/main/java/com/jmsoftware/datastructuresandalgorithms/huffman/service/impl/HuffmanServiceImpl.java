@@ -34,7 +34,7 @@ public class HuffmanServiceImpl implements HuffmanService {
         val rootNode = HuffmanTree.generateHuffmanTree(frequencyMap);
         log.info("Root: {}", rootNode);
         val huffmanCodeMap = new HashMap<Character, String>(32);
-        HuffmanTree.recursiveTraverseInPreOrderHuffmanTree(rootNode, "", huffmanCodeMap);
+        HuffmanTree.recursivelyTraverseHuffmanTreeByPreorder(rootNode, "", huffmanCodeMap);
         log.info("Huffman code map: {}", huffmanCodeMap);
         response.setHuffmanCodeMap(huffmanCodeMap);
         response.setEncodedContent(this.encodeTextByHuffmanCode(huffmanCodeMap, payload.getContent()));

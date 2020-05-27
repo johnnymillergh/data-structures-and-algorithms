@@ -1,6 +1,7 @@
 package com.jmsoftware.datastructuresandalgorithms.huffman.entity;
 
 import com.jmsoftware.datastructuresandalgorithms.common.util.KeyInputUtil;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import java.util.PriorityQueue;
  * @author Johnny Miller (鍾俊), email: johnnysviva@outlook.com
  * @date 5/24/20 10:52 PM
  **/
+@Slf4j
 public class HuffmanTree {
     /**
      * Recursive function to print the huffman-code through the tree traversal.
@@ -23,7 +25,7 @@ public class HuffmanTree {
      * @param rootNode the root
      * @param string   the string
      */
-    public static void recursivePrintHuffmanCode(HuffmanNode rootNode, String string) {
+    public static void recursivelyPrintHuffmanCode(HuffmanNode rootNode, String string) {
         if (rootNode == null) {
             return;
         }
@@ -42,19 +44,19 @@ public class HuffmanTree {
 
         // recursive calls for left and
         // right sub-tree of the generated tree.
-        recursivePrintHuffmanCode((HuffmanNode) rootNode.getLeftChildNode(), string + "0");
-        recursivePrintHuffmanCode((HuffmanNode) rootNode.getRightChildNode(), string + "1");
+        recursivelyPrintHuffmanCode((HuffmanNode) rootNode.getLeftChildNode(), string + "0");
+        recursivelyPrintHuffmanCode((HuffmanNode) rootNode.getRightChildNode(), string + "1");
     }
 
     /**
-     * Recursive traverse in pre order huffman tree.
+     * Recursively traverse huffman tree by preorder.
      *
      * @param rootNode       the root node
      * @param string         the string
      * @param huffmanCodeMap the huffman code map
      */
-    public static void recursiveTraverseInPreOrderHuffmanTree(HuffmanNode rootNode, String string,
-                                                              HashMap<Character, String> huffmanCodeMap) {
+    public static void recursivelyTraverseHuffmanTreeByPreorder(HuffmanNode rootNode, String string,
+                                                                HashMap<Character, String> huffmanCodeMap) {
         if (rootNode == null) {
             return;
         }
@@ -62,9 +64,9 @@ public class HuffmanTree {
             huffmanCodeMap.put(rootNode.getCharacter(), string);
             return;
         }
-        recursiveTraverseInPreOrderHuffmanTree((HuffmanNode) rootNode.getLeftChildNode(), string + "0", huffmanCodeMap);
-        recursiveTraverseInPreOrderHuffmanTree((HuffmanNode) rootNode.getRightChildNode(), string + "1",
-                                               huffmanCodeMap);
+        recursivelyTraverseHuffmanTreeByPreorder((HuffmanNode) rootNode.getLeftChildNode(), string + "0", huffmanCodeMap);
+        recursivelyTraverseHuffmanTreeByPreorder((HuffmanNode) rootNode.getRightChildNode(), string + "1",
+                                                 huffmanCodeMap);
     }
 
     /**
@@ -136,9 +138,9 @@ public class HuffmanTree {
         val frequencyMap = calculateFrequency(inputString);
         System.out.println("Frequency map: " + frequencyMap);
         val rootNode = generateHuffmanTree(frequencyMap);
-        recursivePrintHuffmanCode(rootNode, "");
+        recursivelyPrintHuffmanCode(rootNode, "");
         val huffmanCodeMap = new HashMap<Character, String>(32);
-        recursiveTraverseInPreOrderHuffmanTree(rootNode, "", huffmanCodeMap);
+        recursivelyTraverseHuffmanTreeByPreorder(rootNode, "", huffmanCodeMap);
         System.out.println("Huffman code map: " + huffmanCodeMap);
         System.out.println("Root: " + rootNode);
         val treeDiagramByTraversingInPreOrder = rootNode.getTreeDiagramByTraversingInPreorder();
